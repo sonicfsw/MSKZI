@@ -2,11 +2,9 @@ def afinno_encrypt(text, a0, a1, b0, b1):
     alphabet = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'.replace('ё', '')
     n = len(alphabet)
     text = text.lower()
-
     a_seq = [a0, a1]
     b_seq = [b0, b1]
-
-    # Генерируем последовательности до длины текста
+    #новые значения a и b
     for i in range(2, len(text)):
         a_seq.append(a_seq[i - 2] * a_seq[i - 1])
         b_seq.append(b_seq[i - 2] + b_seq[i - 1])
@@ -28,13 +26,11 @@ def afinno_encrypt(text, a0, a1, b0, b1):
 
     return encrypted
 
-
-# --- Ввод пользователя ---
 text = input("Введите слово для шифрования: ")
 a0 = int(input("Введите a0: "))
 a1 = int(input("Введите a1: "))
 b0 = int(input("Введите b0: "))
 b1 = int(input("Введите b1: "))
-
 result = afinno_encrypt(text, a0, a1, b0, b1)
 print("\nЗашифрованное слово:", result)
+

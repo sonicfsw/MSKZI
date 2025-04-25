@@ -21,7 +21,7 @@ def affine_decrypt(ciphertext, a, b, alphabet):
     return decrypted
 
 # ==== НАСТРОЙКИ ====
-a = 3       # значение a
+a = 39       # значение a
 b = 30        # значение b
 alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя"  # кириллица (можно поменять)
 
@@ -33,6 +33,3 @@ decrypted_text = affine_decrypt(encrypted_text.lower(), a, b, alphabet)
 
 print("Расшифрованный текст:\n", decrypted_text)
 
-# ==== (по желанию) СОХРАНЕНИЕ В ФАЙЛ ====
-with open("2.rtf", "w", encoding="utf-8") as file:
-    file.write(decrypted_text)

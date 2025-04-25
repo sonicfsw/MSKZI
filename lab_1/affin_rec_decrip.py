@@ -1,26 +1,22 @@
 def modinv(a, n):
-    """Находит обратное по модулю число"""
     a = a % n
     for x in range(1, n):
         if (a * x) % n == 1:
             return x
     raise Exception(f"Обратного элемента для {a} по модулю {n} не существует")
-
 def affine_decrypt(cipher_text, a0, a1, b0, b1):
     alphabet = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'.replace('ё', '')
     n = len(alphabet)
     cipher_text = cipher_text.lower()
-
     a_seq = [a0, a1]
     b_seq = [b0, b1]
 
     for i in range(2, len(cipher_text)):
         a_seq.append(a_seq[i-2] * a_seq[i-1])
         b_seq.append(b_seq[i-2] + b_seq[i-1])
-
     result = ''
     print("Шаги дешифровки:")
-
+    #расшифровка: D(x) = a_inv * (x - b) mod m
     for i, char in enumerate(cipher_text):
         if char in alphabet:
             y = alphabet.index(char)
@@ -41,12 +37,10 @@ def affine_decrypt(cipher_text, a0, a1, b0, b1):
 
     return result
 
-# --- Ввод ---
 cipher_text = input("Введите зашифрованный текст: ")
 a0 = int(input("Введите a₀: "))
 a1 = int(input("Введите a₁: "))
 b0 = int(input("Введите b₀: "))
 b1 = int(input("Введите b₁: "))
-
 decrypted = affine_decrypt(cipher_text, a0, a1, b0, b1)
 print("\nРасшифрованный текст:", decrypted)
